@@ -1,15 +1,15 @@
-import { authClient } from '../http/authClient.js';
+import { authClient } from "../http/authClient.js";
 
-function register({ email, password }) {
-  return authClient.post('/registration', { email, password })
+function register({ name, email, password }) {
+  return authClient.post("/registration", { name, email, password });
 }
 
 function login({ email, password }) {
-  return authClient.post('/login', { email, password })
+  return authClient.post("/login", { email, password });
 }
 
 function logout() {
-  return authClient.post('/logout')
+  return authClient.post("/logout");
 }
 
 function activate(activationToken) {
@@ -17,7 +17,18 @@ function activate(activationToken) {
 }
 
 function refresh() {
-  return authClient.get('/refresh');
+  return authClient.get("/refresh");
 }
 
-export const authService = { register, login, logout, activate, refresh };
+function requestReset({ email }) {
+  return authClient.post("/reset", { email });
+}
+
+export const authService = {
+  register,
+  login,
+  logout,
+  activate,
+  refresh,
+  requestReset,
+};
